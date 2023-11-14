@@ -11,15 +11,15 @@ class Siswa extends REST_Controller {
 		$this->load->model('Siswa_model');
 
 		header('Access-Control-Allow-Origin: *');
-		header("Access-Control-Allow-Methods: GET, OPTIONS");
-		header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
-
-		if ( "OPTIONS" === $_SERVER['REQUEST_METHOD'] ) {
+		header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
+		header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+		$method = $_SERVER['REQUEST_METHOD'];
+		if ($method == "OPTIONS") {
 			die();
 		}
 	}
 
-	public function index_get() {
+	public function users_get() {
 		$id = $this->get('id');
 		if( $id === null ) {
 			$siswa = $this->Siswa_model->getSiswa();
@@ -43,7 +43,7 @@ class Siswa extends REST_Controller {
 		}   
 	}
 
-	public function index_delete()
+	public function users_delete()
     {
         $id = (int) $this->delete('id');
 
@@ -76,7 +76,7 @@ class Siswa extends REST_Controller {
 		
     }
 
-	public function index_post()
+	public function users_post()
     {
         // $this->some_model->update_user( ... );
         $data = [
@@ -103,7 +103,7 @@ class Siswa extends REST_Controller {
 
     }
 
-	public function index_put(){
+	public function users_put(){
 		$id = (int) $this->put('id');
 
 		$data = [

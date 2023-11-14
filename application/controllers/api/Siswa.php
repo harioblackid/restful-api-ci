@@ -19,7 +19,7 @@ class Siswa extends REST_Controller {
 		}
 	}
 
-	public function users_get() {
+	public function index_get() {
 		$id = $this->get('id');
 		if( $id === null ) {
 			$siswa = $this->Siswa_model->getSiswa();
@@ -43,7 +43,7 @@ class Siswa extends REST_Controller {
 		}   
 	}
 
-	public function users_delete()
+	public function index_delete()
     {
         $id = (int) $this->delete('id');
 
@@ -76,7 +76,7 @@ class Siswa extends REST_Controller {
 		
     }
 
-	public function users_post()
+	public function index_post()
     {
         // $this->some_model->update_user( ... );
         $data = [
@@ -103,7 +103,7 @@ class Siswa extends REST_Controller {
 
     }
 
-	public function users_put(){
+	public function index_put(){
 		$id = (int) $this->put('id');
 
 		$data = [
@@ -123,7 +123,7 @@ class Siswa extends REST_Controller {
 		else {
 			$this->response([
 				'status' => FALSE,
-				'error' => 'Siswa failed to update'
+				'error' => 'Siswa failed to update, id not found'
 			], REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
 		}
 	}
